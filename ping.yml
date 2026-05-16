@@ -1,0 +1,7 @@
+---
+   - name: Teste de conexão WinRM
+     hosts: all
+     gather_facts: false
+     tasks:
+       - name: Pingar a máquina
+         ansible.windows.win_ping:

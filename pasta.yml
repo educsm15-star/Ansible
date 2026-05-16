@@ -1,0 +1,27 @@
+---
+- name: Criar pasta de teste na área de trabalho
+  hosts: all
+  gather_facts: false
+
+  vars:
+    nome_pasta: "Pasta Criada pelo Ansible"
+    usuario_destino: "meta"
+
+  tasks:
+    - name: Criar a pasta no Desktop do usuário
+      ansible.windows.win_file:
+        path: "C:\\Users\\{{ usuario_destino }}\\Desktop\\{{ nome_pasta }}"
+        state: directory
+
+    - name: Criar um arquivo de texto dentro da pasta
+      ansible.windows.win_copy:
+        content: |
+          Olá! Esta pasta foi criada automaticamente pelo Ansible
+          via Semaphore UI em {{ ansible_date_time.iso8601 | default('agora') }}.
+          
+          Executado por: Service Desk Meta
+        dest: "C:\\Users\\{{ usuario_destino }}\\Desktop\\{{ nome_pasta }}\\leia-me.txt"
+
+    - name: Exibir mensagem de sucesso
+      ansible.builtin.debug:
+        msg: "Pasta '{{ nome_pasta }}' criada com sucesso no Desktop do usuário {{ usuario_destino }}!"

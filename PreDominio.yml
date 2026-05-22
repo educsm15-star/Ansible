@@ -4,9 +4,8 @@
   gather_facts: false
 
   tasks:
-    - name: Rodar script META-PRE-DOMINIO.ps1
+    - name: Rodar script META-PRE-DOMINIO.bat
       ansible.windows.win_shell: |
-        Set-ExecutionPolicy Bypass -Scope Process -Force
-        & "C:\Apos_colocar_no_dominio\META-POS-DOMINIO\META-PRE-DOMINIO.ps1"
+        cmd.exe /c "C:\Apos_colocar_no_dominio\META-POS-DOMINIO\META-PRE-DOMINIO.bat"
       args:
-        executable: powershell
+        executable: cmd

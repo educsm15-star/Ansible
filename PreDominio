@@ -1,0 +1,12 @@
+---
+- name: Executar META-PRE-DOMINIO
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Rodar script META-PRE-DOMINIO.ps1
+      ansible.windows.win_shell: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force
+        & "C:\Apos_colocar_no_dominio\META-POS-DOMINIO\META-PRE-DOMINIO.ps1"
+      args:
+        executable: powershell
